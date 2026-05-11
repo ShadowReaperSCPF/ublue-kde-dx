@@ -46,6 +46,11 @@ jobs:
       id-token: write
 
     steps:
+      - uses: mathio/gha-cleanup@v1
+        with:
+         remove-browsers: true
+         verbose: true
+         
       - name: Prepare environment
         run: |
           echo "IMAGE_REGISTRY=${IMAGE_REGISTRY,,}" >> ${GITHUB_ENV}
