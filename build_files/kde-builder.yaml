@@ -41,6 +41,7 @@ global:
   check-self-updates: false
 
   ignore-projects:
+  - kapsule
   - kgamma
   - kwin-x11
   - wacomtablet
@@ -71,9 +72,6 @@ override plasma-workspace:
 
 override plasma-login-manager:
     cmake-options: -DPAM_OS_CONFIGURATION=fedora
-
-override konsole:
-    cmake-options: -DWITH_KAPSULE=ON
 
 override union:
     cmake-options: -DBUILD_OUTPUT_QTWIDGETS=ON
