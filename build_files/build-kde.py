@@ -39,6 +39,7 @@ KDE_BUILDER_TARGETS = [
     "selenium-webdriver-at-spi",
     "spectacle",
     "workspace",
+    "xwaylandvideobridge",
 ]
 
 
