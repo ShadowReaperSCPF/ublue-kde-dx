@@ -10,6 +10,14 @@ mkdir -p "$DESTDIR" "$LOG_DIR"
 rm -rf /root
 mkdir -p /root/.config
 
+# Block all 32-bit packages globally
+# Safely append the excludepkgs configuration to the main section
+sudo bash -c 'cat << EOF >> /etc/dnf/dnf.conf
+
+[main]
+excludepkgs=*.i686
+EOF'
+
 FAILED=0
 
 log()   { echo -e "\n\033[1;34m==> $1\033[0m\n" | tee -a "$LOG_DIR/build.log"; }
@@ -45,7 +53,7 @@ git clone https://invent.kde.org/sdk/kde-builder.git /usr/share/kde-builder
 ln -sf /usr/share/kde-builder/kde-builder /usr/bin/kde-builder
 
 log "Fetching and installing KDE distro dependencies..."
-python3 /ctx/install-kde-deps.py 2>&1 | tee -a "$LOG_DIR/deps.log"
+python3 /ctx/install-kde-deps.py --compile 2>&1 | tee -a "$LOG_DIR/deps.log"
 
 log "Installing ninja hijack..."
 mv /usr/bin/ninja /usr/bin/ninja.orig

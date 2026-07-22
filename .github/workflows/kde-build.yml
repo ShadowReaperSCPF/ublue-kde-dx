@@ -37,10 +37,10 @@ jobs:
           swap-storage: true
 
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v5
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v5
 
       - name: Set up ccache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: /home/runner/ccache
           key: ccache-kde-build-${{ github.ref_name }}-${{ github.run_id }}
@@ -93,6 +93,7 @@ jobs:
           path: |
             /tmp/kde-work/kde-master.tar.zst
             /tmp/kde-work/base-image-digest.txt
+            /tmp/kde-work/kde-runtime-deps.txt
           retention-days: 1
 
   release:
@@ -119,4 +120,5 @@ jobs:
           files: |
             /tmp/kde-work/kde-master.tar.zst
             /tmp/kde-work/base-image-digest.txt
+            /tmp/kde-work/kde-runtime-deps.txt
           token: ${{ secrets.GITHUB_TOKEN }}

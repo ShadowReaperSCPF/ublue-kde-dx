@@ -96,7 +96,7 @@ jobs:
           swap-storage: true
 
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v5
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v5
 
       - name: Install just
         uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3 # v4.0.0
@@ -124,6 +124,11 @@ jobs:
             --repo ${{ github.repository }} \
             --pattern 'kde-master.tar.zst' \
             --output build_files/kde-master.tar.zst
+
+          gh release download ${RELEASE_TAG} \
+            --repo ${{ github.repository }} \
+            --pattern 'kde-runtime-deps.txt' \
+            --output build_files/kde-runtime-deps.txt
 
           if gh release download ${RELEASE_TAG} \
             --repo ${{ github.repository }} \
